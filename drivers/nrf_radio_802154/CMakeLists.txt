@@ -5,10 +5,11 @@ zephyr_library_sources(
   nrf_802154_core.c
   nrf_802154_critical_section.c
   nrf_802154_debug.c
-  nrf_802154_notification_direct.c
+  nrf_802154_notification_swi.c
   nrf_802154_pib.c
-  nrf_802154_priority_drop_direct.c
-  nrf_802154_request_direct.c
+  nrf_802154_priority_drop_swi.c
+  nrf_802154_request_swi.c
+  nrf_802154_swi.c
   nrf_802154_rssi.c
   nrf_802154_rx_buffer.c
   nrf_802154_timer_coord.c
@@ -59,6 +60,7 @@ zephyr_compile_definitions(
   # radio IRQ priority to 0, or the radio IRQ will ignore IRQ lock.
   NRF_802154_IRQ_PRIORITY=1
   NRF_802154_INTERNAL_RADIO_IRQ_HANDLING=0
+  NRF_802154_INTERNAL_SWI_IRQ_HANDLING=0
 
   # Radio driver shim layer uses raw api
   NRF_802154_USE_RAW_API=1
