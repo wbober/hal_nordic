@@ -13,7 +13,6 @@ zephyr_library_sources(
   nrf_802154_rx_buffer.c
   nrf_802154_timer_coord.c
   nrf_802154.c
-  fal/nrf_802154_fal.c
   mac_features/nrf_802154_csma_ca.c
   mac_features/nrf_802154_filter.c
   mac_features/nrf_802154_frame_parser.c
@@ -31,9 +30,15 @@ zephyr_library_sources(
   platform/temperature/nrf_802154_temperature_none.c
   rsch/nrf_802154_rsch.c
   rsch/nrf_802154_rsch_crit_sect.c
-  rsch/raal/single_phy/single_phy.c
   timer_scheduler/nrf_802154_timer_sched.c
 )
+
+if(NOT CONFIG_MPSL)
+zephyr_library_sources(
+  fal/nrf_802154_fal.c
+  rsch/raal/single_phy/single_phy.c
+)
+endif()
 
 if(     CONFIG_NRF_802154_CCA_MODE_ED)
   set(radio_cca_mode NRF_RADIO_CCA_MODE_ED)
